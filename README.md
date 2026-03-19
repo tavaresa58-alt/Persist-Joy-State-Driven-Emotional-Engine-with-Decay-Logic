@@ -1,31 +1,3 @@
-import datetime
-import random
-import time
-import json
-from pathlib import Path
-
-ARQUIVO_ESTADO = Path("joy_estado.json")
-
-class Joy:
-    def __init__(self):
-        self.nome = "Joy"
-        self.humor = 50 
-        self.ultimo_tempo = time.time()
-        self.memoria_afetiva = [] # Mudamos para lista para gerenciar individualmente
-        self.contador_interacao = 0
-        self.ordens_repetidas = 0
-        
-        self.sinonimos = {
-            "música": ["canção", "melodia", "som", "ritmo"],
-            "saudade": ["falta", "rio", "casa", "mãe", "letícia"],
-            "cerveja": ["lata", "gelada", "portão", "mercado"],
-            "clima": ["pingo", "molhado", "fina", "ar", "chuva"]
-        }
-
-        self.carregar_estado()
-
-    def carregar_estado(self):
-        if ARQUIVO_ESTADO.exists():
             try:
                 with open(ARQUIVO_ESTADO, 'r', encoding='utf-8') as f:
                     dados = json.load(f)
